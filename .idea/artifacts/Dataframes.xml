@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Dataframes">
+    <output-path>$PROJECT_DIR$/../../artifacts</output-path>
+    <root id="archive" name="Dataframes.jar" />
+  </artifact>
+</component>
