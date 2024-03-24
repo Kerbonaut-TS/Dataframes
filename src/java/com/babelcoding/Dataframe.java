@@ -1,21 +1,17 @@
 package com.babelcoding;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import javax.swing.text.html.BlockView;
 import java.io.FileReader;
-import java.lang.module.FindException;
-import java.util.Arrays;
 import java.util.Set;
 
-public class Dataframes {
+public class Dataframe {
     JSONObject dataframe;
-    Set<String> index;
-    Set<String> columns;
+    public Set<String> index;
+    public Set<String> columns;
 
-    public Dataframes() {
+    public Dataframe() {
 
         System.out.println("Dataframe v0.1");
 
@@ -48,6 +44,11 @@ public class Dataframes {
 
     public Object getIndex(int i) {
         return this.index.toArray()[i];
+    }
+
+    public Object loc(Object index, Object column) {
+
+        return this.loc(index.toString(), column.toString());
     }
 
     public Object loc(String index, String column) {
