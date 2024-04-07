@@ -9,9 +9,9 @@ public class Utils {
 
         public static void writeFile(String filepath, String content) {
 
-        int lastSeparatorIndex = filepath.lastIndexOf(File.separator);
-        String folder = filepath.substring(0, lastSeparatorIndex);
-        String filename = filepath.substring(lastSeparatorIndex + 1);
+        File file = new File(filepath);
+        String folder = file.getParent();
+        String filename =filepath.replace("folder", "");
 
 
         File directory = new File(folder);
