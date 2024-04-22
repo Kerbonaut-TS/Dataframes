@@ -4,6 +4,7 @@ import com.babelcoding.Utils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Dictionary;
@@ -33,12 +34,19 @@ public class Dataframe {
     }
 
 
+
+    public void read_json(File file) throws ParseException, IOException {
+
+        this.read_json( file.getAbsolutePath());
+    }
+
     public void read_json(String filepath) throws ParseException, IOException {
 
             FileReader reader = new FileReader(filepath);
             this.dataframe = this.parse_json(reader);
             this.read_axis();
     }
+
 
     private void read_axis(){
 
@@ -95,9 +103,22 @@ public class Dataframe {
     public Object loc(String index, String column) {
 
         JSONObject record = (JSONObject) this.dataframe.get(index);
-        Object value = record.get(column);
-        return value;
+        return record.get(column);
     }
+
+
+
+    public void update(Object index, Object column, Object new_value) {
+
+        JSONObject record = (JSONObject) this.dataframe.get(index.toString());
+
+        //update
+        record.replace(column.toString(), new_value);
+        this.dataframe.replace(index.toString(), record);
+
+    }
+
+    //TODO UPDATE WHERE
 
     public Object iloc(int index, int column) {
 
@@ -105,6 +126,8 @@ public class Dataframe {
         Object value = record.get(this.getColumn(column));
         return value;
     }
+
+
 
     public double[][] get2dArray() {
 
